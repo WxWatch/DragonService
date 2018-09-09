@@ -9,49 +9,49 @@
 import Foundation
 
 public struct Image: Codable {
-    let full: String
-    let sprite: String
-    let group: String
-    let x, y, w, h: Int
+    public let full: String
+    public let sprite: String
+    public let group: String
+    public let x, y, w, h: Int
 }
 
 public struct Basic: Codable {
-    let name: String
-    let rune: Rune
-    let gold: Gold
-    let group, description, colloq, plaintext: String
-    let consumed: Bool
-    let stacks, depth: Int
-    let consumeOnFull: Bool
-    let from, into: [String]
-    let specialRecipe: Int
-    let inStore, hideFromAll: Bool
-    let requiredChampion: String
-    let stats: [String: Int]
-    let tags: [String]
-    let maps: [String: Bool]
+    public let name: String
+    public let rune: Rune
+    public let gold: Gold
+    public let group, description, colloq, plaintext: String
+    public let consumed: Bool
+    public let stacks, depth: Int
+    public let consumeOnFull: Bool
+    public let from, into: [String]
+    public let specialRecipe: Int
+    public let inStore, hideFromAll: Bool
+    public let requiredChampion: String
+    public let stats: [String: Int]
+    public let tags: [String]
+    public let maps: [String: Bool]
 }
 
 public struct Gold: Codable {
-    let base, total, sell: Int
-    let purchasable: Bool
+    public let base, total, sell: Int
+    public let purchasable: Bool
 }
 
 public struct Rune: Codable {
-    let isrune: Bool
-    let tier: Int
-    let type: String
+    public let isrune: Bool
+    public let tier: Int
+    public let type: String
 }
 
 public struct Leveltip: Codable {
-    let label, effect: [String]
+    public let label, effect: [String]
 }
 
-enum Coeff: Codable {
+public enum Coeff: Codable {
     case double(Double)
     case doubleArray([Double])
 
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let x = try? container.decode([Double].self) {
             self = .doubleArray(x)
@@ -64,7 +64,7 @@ enum Coeff: Codable {
         throw DecodingError.typeMismatch(Coeff.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for Coeff"))
     }
 
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .double(let x):

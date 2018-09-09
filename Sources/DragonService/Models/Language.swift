@@ -9,12 +9,12 @@
 import Foundation
 
 public struct LanguageModel: Codable {
-    let type, version: String
-    let data: [String: String]
-    let tree: LanguageTree
+    public let type, version: String
+    public let data: [String: String]
+    public let tree: LanguageTree
 }
 
 public struct LanguageTree: Codable {
-    let searchKeyIgnore: String
-    let searchKeyRemap: [String]
+    public let searchKeyIgnore: String
+    public let searchKeyRemap: [String]
 }

@@ -9,91 +9,91 @@
 import Foundation
 
 public struct Champions: Codable {
-    let type, format, version: String
-    let data: [String: ChampionData]
-    let keys: [Int: String]?
+    public let type, format, version: String
+    public let data: [String: ChampionData]
+    public let keys: [Int: String]?
 }
 
 public struct ChampionData: Codable {
-    let id, key, name, title: String
-    let image: Image
-    let skins: [Skin]?
-    let lore, blurb: String?
-    let allytips, enemytips, tags: [String]?
-    let partype: String
-    let info: Info
-    let stats: [String: Double]
-    let spells: [Spell]?
-    let passive: Passive?
-    let recommended: [Recommended]?
+    public let id, key, name, title: String
+    public let image: Image
+    public let skins: [Skin]?
+    public let lore, blurb: String?
+    public let allytips, enemytips, tags: [String]?
+    public let partype: String
+    public let info: Info
+    public let stats: [String: Double]
+    public let spells: [Spell]?
+    public let passive: Passive?
+    public let recommended: [Recommended]?
 }
 
 public struct Info: Codable {
-    let attack, defense, magic, difficulty: Int
+    public let attack, defense, magic, difficulty: Int
 }
 
 public struct Passive: Codable {
-    let name, description: String
-    let image: Image
+    public let name, description: String
+    public let image: Image
 }
 
 public struct Recommended: Codable {
-    let champion, title, map, mode: String
-    let type: String
-    let customTag: String?
-    let sortrank: Int?
-    let extensionPage: Bool?
-    let useObviousCheckmark: Bool?
-    let customPanel: String?
-    let blocks: [Block]
+    public let champion, title, map, mode: String
+    public let type: String
+    public let customTag: String?
+    public let sortrank: Int?
+    public let extensionPage: Bool?
+    public let useObviousCheckmark: Bool?
+    public let customPanel: String?
+    public let blocks: [Block]
 }
 
 public struct Block: Codable {
-    let type: String
-    let recMath, recSteps: Bool?
-    let minSummonerLevel, maxSummonerLevel: Int?
-    let showIfSummonerSpell, hideIfSummonerSpell: String?
-    let appendAfterSection: String?
-    let visibleWithAllOf, hiddenWithAnyOf: [String]?
-    let items: [Item]
+    public let type: String
+    public let recMath, recSteps: Bool?
+    public let minSummonerLevel, maxSummonerLevel: Int?
+    public let showIfSummonerSpell, hideIfSummonerSpell: String?
+    public let appendAfterSection: String?
+    public let visibleWithAllOf, hiddenWithAnyOf: [String]?
+    public let items: [Item]
 }
 
 public struct Item: Codable {
-    let id: String
-    let count: Int
-    let hideCount: Bool?
+    public let id: String
+    public let count: Int
+    public let hideCount: Bool?
 }
 
 public struct Skin: Codable {
-    let id: String
-    let num: Int
-    let name: String
-    let chromas: Bool
+    public let id: String
+    public let num: Int
+    public let name: String
+    public let chromas: Bool
 }
 
 public struct Spell: Codable {
-    let id, name, description, tooltip: String
-    let leveltip: Leveltip
-    let maxrank: Int
-    let cooldown: [Double]
-    let cooldownBurn: String
-    let cost: [Int]
-    let costBurn: String
-    let datavalues: Datavalues?
-    let effect: [[Double]?]
-    let effectBurn: [String?]
-    let vars: [VarData]
-    let costType, maxammo: String
-    let range: [Int]
-    let rangeBurn: String
-    let image: Image
-    let resource: String
+    public let id, name, description, tooltip: String
+    public let leveltip: Leveltip
+    public let maxrank: Int
+    public let cooldown: [Double]
+    public let cooldownBurn: String
+    public let cost: [Int]
+    public let costBurn: String
+    public let datavalues: Datavalues?
+    public let effect: [[Double]?]
+    public let effectBurn: [String?]
+    public let vars: [VarData]
+    public let costType, maxammo: String
+    public let range: [Int]
+    public let rangeBurn: String
+    public let image: Image
+    public let resource: String
 }
 
 public struct VarData: Codable {
-    let link: String?
-    let key: String
-    let coeff: Coeff
+    public let link: String?
+    public let key: String
+    public let coeff: Coeff
 }
 
 public struct Datavalues: Codable {

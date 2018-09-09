@@ -9,11 +9,11 @@
 import Foundation
 
 public struct ProfileIcons: Codable {
-    let type, version: String
-    let data: [String: ProfileIconsDatum]
+    public let type, version: String
+    public let data: [String: ProfileIconsDatum]
 }
 
 public struct ProfileIconsDatum: Codable {
-    let id: Int
-    let image: Image
+    public let id: Int
+    public let image: Image
 }

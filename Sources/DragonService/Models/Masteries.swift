@@ -9,24 +9,24 @@
 import Foundation
 
 public struct Masteries: Codable {
-    let type, version: String
-    let tree: MasteriesTree
-    let data: [String: MasteriesDatum]
+    public let type, version: String
+    public let tree: MasteriesTree
+    public let data: [String: MasteriesDatum]
 }
 
 public struct MasteriesDatum: Codable {
-    let id: Int
-    let name: String
-    let description: [String]
-    let image: Image
-    let ranks: Int
-    let prereq: String
+    public let id: Int
+    public let name: String
+    public let description: [String]
+    public let image: Image
+    public let ranks: Int
+    public let prereq: String
 }
 
 public struct MasteriesTree: Codable {
-    let ferocity, cunning, resolve: [[Cunning]]
+    public let ferocity, cunning, resolve: [[Cunning]]
 
-    enum CodingKeys: String, CodingKey {
+    public enum CodingKeys: String, CodingKey {
         case ferocity = "Ferocity"
         case cunning = "Cunning"
         case resolve = "Resolve"
@@ -34,9 +34,9 @@ public struct MasteriesTree: Codable {
 }
 
 public struct Cunning: Codable {
-    let masteryID, prereq: String
+    public let masteryID, prereq: String
 
-    enum CodingKeys: String, CodingKey {
+    public enum CodingKeys: String, CodingKey {
         case masteryID = "masteryId"
         case prereq
     }

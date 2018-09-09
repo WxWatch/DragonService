@@ -9,34 +9,34 @@
 import Foundation
 
 public struct Runes: Codable {
-    let type, version: String
-    let basic: Basic
-    let data: [String: RunesDatum]
+    public let type, version: String
+    public let basic: Basic
+    public let data: [String: RunesDatum]
 }
 
 public struct RunesDatum: Codable {
-    let name, description: String
-    let image: Image
-    let rune: DatumRune
-    let stats: [String: Double]
-    let tags: [Tag]
-    let colloq, plaintext: JSONNull?
+    public let name, description: String
+    public let image: Image
+    public let rune: DatumRune
+    public let stats: [String: Double]
+    public let tags: [Tag]
+    public let colloq, plaintext: JSONNull?
 }
 
 public struct DatumRune: Codable {
-    let isrune: Bool
-    let tier: String
-    let type: TypeEnum
+    public let isrune: Bool
+    public let tier: String
+    public let type: TypeEnum
 }
 
-enum TypeEnum: String, Codable {
+public enum TypeEnum: String, Codable {
     case black = "black"
     case blue = "blue"
     case red = "red"
     case yellow = "yellow"
 }
 
-enum Tag: String, Codable {
+public enum Tag: String, Codable {
     case defense = "defense"
     case flat = "flat"
     case glyph = "glyph"

@@ -9,15 +9,15 @@
 import Foundation
 
 public struct Realms: Codable {
-    let n: N
-    let v, l, cdn, dd: String
-    let lg, css: String
-    let profileiconmax: Int
-    let store: JSONNull?
+    public let n: N
+    public let v, l, cdn, dd: String
+    public let lg, css: String
+    public let profileiconmax: Int
+    public let store: JSONNull?
 }
 
 public struct N: Codable {
-    let item, rune, mastery, summoner: String
-    let champion, profileicon, map, language: String
-    let sticker: String
+    public let item, rune, mastery, summoner: String
+    public let champion, profileicon, map, language: String
+    public let sticker: String
 }

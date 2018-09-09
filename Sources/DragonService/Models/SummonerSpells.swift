@@ -9,34 +9,34 @@
 import Foundation
 
 public struct SummonerSpells: Codable {
-    let type, version: String
-    let data: [String: SummonerSpellsDatum]
+    public let type, version: String
+    public let data: [String: SummonerSpellsDatum]
 }
 
 public struct SummonerSpellsDatum: Codable {
-    let id, name, description, tooltip: String
-    let maxrank: Int
-    let cooldown: [Int]
-    let cooldownBurn: String
-    let cost: [Int]
-    let costBurn: String
-    let effect: [[Double]?]
-    let effectBurn: [String?]
-    let vars: [Var]
-    let key: String
-    let summonerLevel: Int
-    let modes: [String]
-    let costType: String
-    let maxammo: String
-    let range: [Int]
-    let rangeBurn: String
-    let image: Image
-    let resource: String
-    let leveltip: Leveltip?
+    public let id, name, description, tooltip: String
+    public let maxrank: Int
+    public let cooldown: [Int]
+    public let cooldownBurn: String
+    public let cost: [Int]
+    public let costBurn: String
+    public let effect: [[Double]?]
+    public let effectBurn: [String?]
+    public let vars: [Var]
+    public let key: String
+    public let summonerLevel: Int
+    public let modes: [String]
+    public let costType: String
+    public let maxammo: String
+    public let range: [Int]
+    public let rangeBurn: String
+    public let image: Image
+    public let resource: String
+    public let leveltip: Leveltip?
 }
 
 public struct Var: Codable {
-    let link: String
-    let coeff: Coeff
-    let key: String
+    public let link: String
+    public let coeff: Coeff
+    public let key: String
 }
