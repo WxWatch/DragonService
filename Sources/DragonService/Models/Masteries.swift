@@ -8,13 +8,13 @@
 
 import Foundation
 
-struct Masteries: Codable {
+public struct Masteries: Codable {
     let type, version: String
     let tree: MasteriesTree
     let data: [String: MasteriesDatum]
 }
 
-struct MasteriesDatum: Codable {
+public struct MasteriesDatum: Codable {
     let id: Int
     let name: String
     let description: [String]
@@ -23,7 +23,7 @@ struct MasteriesDatum: Codable {
     let prereq: String
 }
 
-struct MasteriesTree: Codable {
+public struct MasteriesTree: Codable {
     let ferocity, cunning, resolve: [[Cunning]]
 
     enum CodingKeys: String, CodingKey {
@@ -33,7 +33,7 @@ struct MasteriesTree: Codable {
     }
 }
 
-struct Cunning: Codable {
+public struct Cunning: Codable {
     let masteryID, prereq: String
 
     enum CodingKeys: String, CodingKey {

@@ -8,13 +8,13 @@
 
 import Foundation
 
-struct Runes: Codable {
+public struct Runes: Codable {
     let type, version: String
     let basic: Basic
     let data: [String: RunesDatum]
 }
 
-struct RunesDatum: Codable {
+public struct RunesDatum: Codable {
     let name, description: String
     let image: Image
     let rune: DatumRune
@@ -23,7 +23,7 @@ struct RunesDatum: Codable {
     let colloq, plaintext: JSONNull?
 }
 
-struct DatumRune: Codable {
+public struct DatumRune: Codable {
     let isrune: Bool
     let tier: String
     let type: TypeEnum

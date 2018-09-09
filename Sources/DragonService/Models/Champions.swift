@@ -8,13 +8,13 @@
 
 import Foundation
 
-struct Champions: Codable {
+public struct Champions: Codable {
     let type, format, version: String
     let data: [String: ChampionData]
     let keys: [Int: String]?
 }
 
-struct ChampionData: Codable {
+public struct ChampionData: Codable {
     let id, key, name, title: String
     let image: Image
     let skins: [Skin]?
@@ -28,16 +28,16 @@ struct ChampionData: Codable {
     let recommended: [Recommended]?
 }
 
-struct Info: Codable {
+public struct Info: Codable {
     let attack, defense, magic, difficulty: Int
 }
 
-struct Passive: Codable {
+public struct Passive: Codable {
     let name, description: String
     let image: Image
 }
 
-struct Recommended: Codable {
+public struct Recommended: Codable {
     let champion, title, map, mode: String
     let type: String
     let customTag: String?
@@ -48,7 +48,7 @@ struct Recommended: Codable {
     let blocks: [Block]
 }
 
-struct Block: Codable {
+public struct Block: Codable {
     let type: String
     let recMath, recSteps: Bool?
     let minSummonerLevel, maxSummonerLevel: Int?
@@ -58,20 +58,20 @@ struct Block: Codable {
     let items: [Item]
 }
 
-struct Item: Codable {
+public struct Item: Codable {
     let id: String
     let count: Int
     let hideCount: Bool?
 }
 
-struct Skin: Codable {
+public struct Skin: Codable {
     let id: String
     let num: Int
     let name: String
     let chromas: Bool
 }
 
-struct Spell: Codable {
+public struct Spell: Codable {
     let id, name, description, tooltip: String
     let leveltip: Leveltip
     let maxrank: Int
@@ -90,12 +90,12 @@ struct Spell: Codable {
     let resource: String
 }
 
-struct VarData: Codable {
+public struct VarData: Codable {
     let link: String?
     let key: String
     let coeff: Coeff
 }
 
-struct Datavalues: Codable {
+public struct Datavalues: Codable {
 }
 

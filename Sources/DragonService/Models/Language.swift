@@ -8,13 +8,13 @@
 
 import Foundation
 
-struct LanguageModel: Codable {
+public struct LanguageModel: Codable {
     let type, version: String
     let data: [String: String]
     let tree: LanguageTree
 }
 
-struct LanguageTree: Codable {
+public struct LanguageTree: Codable {
     let searchKeyIgnore: String
     let searchKeyRemap: [String]
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Realms: Codable {
+public struct Realms: Codable {
     let n: N
     let v, l, cdn, dd: String
     let lg, css: String
@@ -16,7 +16,7 @@ struct Realms: Codable {
     let store: JSONNull?
 }
 
-struct N: Codable {
+public struct N: Codable {
     let item, rune, mastery, summoner: String
     let champion, profileicon, map, language: String
     let sticker: String

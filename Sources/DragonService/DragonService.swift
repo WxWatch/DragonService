@@ -9,8 +9,10 @@
 import Foundation
 import Alamofire
 
-class DragonService {
+public class DragonService {
     let baseUrl = "https://ddragon.leagueoflegends.com"
+
+    public init() {}
 
     private func buildUrl(base: String, paths: [String]) -> URL? {
         var urlString = base
@@ -53,12 +55,16 @@ class DragonService {
         return fetch(paths: [DragonService.ServiceConstants.Realms.rawValue, endpoint])
     }
 
-    class Champion: DragonService {
-        func list(version: String, locale: String, completionHandler: @escaping (Any?) -> Void) {
+    public class Champion: DragonService {
+        public override init() {
+            super.init()
+        }
+
+        public func list(version: String, locale: String, completionHandler: @escaping (Any?) -> Void) {
             list(version: version, locale: locale, full: false, completionHandler: completionHandler)
         }
 
-        func list(version: String, locale: String, full: Bool, completionHandler: @escaping (Champions) -> Void) {
+        public func list(version: String, locale: String, full: Bool, completionHandler: @escaping (Champions) -> Void) {
             let endpoint = full ? DragonService.EndpointConstants.ChampionsFull : DragonService.EndpointConstants.Champions
 
             guard let response = fetchCdn(version: version, locale: locale, endpoint: endpoint.rawValue) else {
@@ -72,7 +78,7 @@ class DragonService {
             }
         }
 
-        func get(version: String, locale: String, champion: String, completionHandler: @escaping (Champions) -> Void) {
+        public func get(version: String, locale: String, champion: String, completionHandler: @escaping (Champions) -> Void) {
             guard let response = fetchCdn(paths: [version, DragonService.UrlConstants.Data.rawValue, locale, DragonService.UrlConstants.Champion.rawValue, "\(champion).json"]) else {
                 return
             }
@@ -85,8 +91,12 @@ class DragonService {
         }
     }
 
-    class Item: DragonService {
-        func list(version: String, locale: String, completionHandler: @escaping (ItemsModel) -> Void) {
+    public class Item: DragonService {
+        public override init() {
+            super.init()
+        }
+
+        public func list(version: String, locale: String, completionHandler: @escaping (ItemsModel) -> Void) {
             guard let response = fetchCdn(version: version, locale: locale, endpoint: DragonService.EndpointConstants.Items.rawValue) else {
                 return
             }
@@ -99,8 +109,12 @@ class DragonService {
         }
     }
 
-    class Language: DragonService {
-        func list(completionHandler: @escaping (Array<String>) -> Void) {
+    public class Language: DragonService {
+        public override init() {
+            super.init()
+        }
+
+        public func list(completionHandler: @escaping (Array<String>) -> Void) {
             guard let response = fetchCdn(endpoint: DragonService.EndpointConstants.Languages.rawValue) else {
                 return
             }
@@ -110,7 +124,7 @@ class DragonService {
             }
         }
 
-        func get(version: String, locale: String, completionHandler: @escaping (LanguageModel) -> Void) {
+        public func get(version: String, locale: String, completionHandler: @escaping (LanguageModel) -> Void) {
             guard let response = fetchCdn(version: version, locale: locale, endpoint: DragonService.EndpointConstants.Language.rawValue) else {
                 return
             }
@@ -123,8 +137,12 @@ class DragonService {
         }
     }
 
-    class Mastery: DragonService {
-        func list(version: String, locale: String, completionHandler: @escaping (Masteries) -> Void) {
+    public class Mastery: DragonService {
+        public override init() {
+            super.init()
+        }
+
+        public func list(version: String, locale: String, completionHandler: @escaping (Masteries) -> Void) {
             guard let response = fetchCdn(version: version, locale: locale, endpoint: DragonService.EndpointConstants.Masteries.rawValue) else {
                 return
             }
@@ -137,8 +155,12 @@ class DragonService {
         }
     }
 
-    class ProfileIcon: DragonService {
-        func list(version: String, locale: String, completionHandler: @escaping (ProfileIcons) -> Void) {
+    public class ProfileIcon: DragonService {
+        public override init() {
+            super.init()
+        }
+
+        public func list(version: String, locale: String, completionHandler: @escaping (ProfileIcons) -> Void) {
             guard let response = fetchCdn(version: version, locale: locale, endpoint: DragonService.EndpointConstants.ProfileIcons.rawValue) else {
                 return
             }
@@ -151,8 +173,12 @@ class DragonService {
         }
     }
 
-    class Realm: DragonService {
-        func list(region: RegionConstants, completionHandler: @escaping (Realms) -> Void) {
+    public class Realm: DragonService {
+        public override init() {
+            super.init()
+        }
+
+        public func list(region: RegionConstants, completionHandler: @escaping (Realms) -> Void) {
             guard let response = fetchRealms(endpoint: "\(region.rawValue.lowercased()).json") else {
                 return
             }
@@ -165,8 +191,12 @@ class DragonService {
         }
     }
 
-    class Rune: DragonService {
-        func list(version: String, locale: String, completionHandler: @escaping (Runes) -> Void) {
+    public class Rune: DragonService {
+        public override init() {
+            super.init()
+        }
+
+        public func list(version: String, locale: String, completionHandler: @escaping (Runes) -> Void) {
             guard let response = fetchCdn(version: version, locale: locale, endpoint: DragonService.EndpointConstants.Runes.rawValue) else {
                 return
             }
@@ -179,8 +209,12 @@ class DragonService {
         }
     }
 
-    class SummonerSpell: DragonService {
-        func list(version: String, locale: String, completionHandler: @escaping (SummonerSpells) -> Void) {
+    public class SummonerSpell: DragonService {
+        public override init() {
+            super.init()
+        }
+
+        public func list(version: String, locale: String, completionHandler: @escaping (SummonerSpells) -> Void) {
             guard let response = fetchCdn(version: version, locale: locale, endpoint: DragonService.EndpointConstants.SummonerSpells.rawValue) else {
                 return
             }
@@ -193,8 +227,12 @@ class DragonService {
         }
     }
 
-    class Version: DragonService {
-        func list(completionHandler: @escaping (Array<String>) -> Void) {
+    public class Version: DragonService {
+        public override init() {
+            super.init()
+        }
+
+        public func list(completionHandler: @escaping (Array<String>) -> Void) {
             guard let response = fetchApi(endpoint: DragonService.EndpointConstants.Versions.rawValue) else {
                 return
             }
@@ -213,7 +251,7 @@ extension DragonService {
         case Champion = "champion"
     }
 
-    enum RegionConstants: String {
+    public enum RegionConstants: String {
         case RU = "RU"
         case BR = "BR"
         case OCE = "OCE"

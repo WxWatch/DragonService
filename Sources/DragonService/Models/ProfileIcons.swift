@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct ProfileIcons: Codable {
+public struct ProfileIcons: Codable {
     let type, version: String
     let data: [String: ProfileIconsDatum]
 }
 
-struct ProfileIconsDatum: Codable {
+public struct ProfileIconsDatum: Codable {
     let id: Int
     let image: Image
 }

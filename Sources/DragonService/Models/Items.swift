@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-struct ItemsModel: Codable {
+public struct ItemsModel: Codable {
     let type, version: String
     let basic: Basic
     let data: [String: ItemsDatum]
@@ -17,7 +17,7 @@ struct ItemsModel: Codable {
     let tree: [ItemsTree]
 }
 
-struct ItemsDatum: Codable {
+public struct ItemsDatum: Codable {
     let name, description, colloq, plaintext: String
     let into: [String]
     let image: Image
@@ -36,7 +36,7 @@ struct ItemsDatum: Codable {
     let hideFromAll: Bool?
 }
 
-struct Effect: Codable {
+public struct Effect: Codable {
     let effect1Amount: String
     let effect2Amount, effect3Amount, effect4Amount, effect5Amount: String?
     let effect6Amount, effect7Amount, effect8Amount: String?
@@ -53,7 +53,7 @@ struct Effect: Codable {
     }
 }
 
-struct GroupElement: Codable {
+public struct GroupElement: Codable {
     let id: String
     let maxGroupOwnable: String?
 
@@ -63,7 +63,7 @@ struct GroupElement: Codable {
     }
 }
 
-struct ItemsTree: Codable {
+public struct ItemsTree: Codable {
     let header: String
     let tags: [String]
 }

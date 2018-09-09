@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct SummonerSpells: Codable {
+public struct SummonerSpells: Codable {
     let type, version: String
     let data: [String: SummonerSpellsDatum]
 }
 
-struct SummonerSpellsDatum: Codable {
+public struct SummonerSpellsDatum: Codable {
     let id, name, description, tooltip: String
     let maxrank: Int
     let cooldown: [Int]
@@ -35,7 +35,7 @@ struct SummonerSpellsDatum: Codable {
     let leveltip: Leveltip?
 }
 
-struct Var: Codable {
+public struct Var: Codable {
     let link: String
     let coeff: Coeff
     let key: String

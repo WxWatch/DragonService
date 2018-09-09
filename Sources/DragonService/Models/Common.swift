@@ -8,14 +8,14 @@
 
 import Foundation
 
-struct Image: Codable {
+public struct Image: Codable {
     let full: String
     let sprite: String
     let group: String
     let x, y, w, h: Int
 }
 
-struct Basic: Codable {
+public struct Basic: Codable {
     let name: String
     let rune: Rune
     let gold: Gold
@@ -32,18 +32,18 @@ struct Basic: Codable {
     let maps: [String: Bool]
 }
 
-struct Gold: Codable {
+public struct Gold: Codable {
     let base, total, sell: Int
     let purchasable: Bool
 }
 
-struct Rune: Codable {
+public struct Rune: Codable {
     let isrune: Bool
     let tier: Int
     let type: String
 }
 
-struct Leveltip: Codable {
+public struct Leveltip: Codable {
     let label, effect: [String]
 }
 
