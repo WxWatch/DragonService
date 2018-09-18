@@ -9,6 +9,10 @@
 import Foundation
 import Alamofire
 
+struct VersionError: Error {
+
+}
+
 public class DragonService {
     let baseUrl = "https://ddragon.leagueoflegends.com"
 
@@ -60,11 +64,11 @@ public class DragonService {
             super.init()
         }
 
-        public func list(version: String, locale: String, completionHandler: @escaping (Any?) -> Void) {
-            list(version: version, locale: locale, full: false, completionHandler: completionHandler)
+        public func list(version: String, locale: String, completionHandler: @escaping (Any?) -> Void, errorHandler: @escaping(Error) -> Void) {
+            list(version: version, locale: locale, full: false, completionHandler: completionHandler, errorHandler: errorHandler)
         }
 
-        public func list(version: String, locale: String, full: Bool, completionHandler: @escaping (Champions) -> Void) {
+        public func list(version: String, locale: String, full: Bool, completionHandler: @escaping (Champions) -> Void, errorHandler: @escaping(Error) -> Void) {
             let endpoint = full ? DragonService.EndpointConstants.ChampionsFull : DragonService.EndpointConstants.Champions
 
             guard let response = fetchCdn(version: version, locale: locale, endpoint: endpoint.rawValue) else {
@@ -72,20 +76,30 @@ public class DragonService {
             }
 
             response.responseChampions { response in
-                if let champions = response.result.value {
-                    completionHandler(champions)
+                switch response.result {
+                case .success:
+                    if let champions = response.result.value {
+                        completionHandler(champions)
+                    }
+                case .failure(let error):
+                    errorHandler(error)
                 }
             }
         }
 
-        public func get(version: String, locale: String, champion: String, completionHandler: @escaping (Champions) -> Void) {
+        public func get(version: String, locale: String, champion: String, completionHandler: @escaping (Champions) -> Void, errorHandler: @escaping(Error) -> Void) {
             guard let response = fetchCdn(paths: [version, DragonService.UrlConstants.Data.rawValue, locale, DragonService.UrlConstants.Champion.rawValue, "\(champion).json"]) else {
                 return
             }
 
             response.responseChampions { response in
-                if let champions = response.result.value {
-                    completionHandler(champions)
+                switch response.result {
+                case .success:
+                    if let champions = response.result.value {
+                        completionHandler(champions)
+                    }
+                case .failure(let error):
+                    errorHandler(error)
                 }
             }
         }
@@ -96,14 +110,19 @@ public class DragonService {
             super.init()
         }
 
-        public func list(version: String, locale: String, completionHandler: @escaping (ItemsModel) -> Void) {
+        public func list(version: String, locale: String, completionHandler: @escaping (ItemsModel) -> Void, errorHandler: @escaping(Error) -> Void) {
             guard let response = fetchCdn(version: version, locale: locale, endpoint: DragonService.EndpointConstants.Items.rawValue) else {
                 return
             }
 
             response.responseItems { response in
-                if let items = response.result.value {
-                    completionHandler(items)
+                switch response.result {
+                case .success:
+                    if let items = response.result.value {
+                        completionHandler(items)
+                    }
+                case .failure(let error):
+                    errorHandler(error)
                 }
             }
         }
@@ -114,25 +133,38 @@ public class DragonService {
             super.init()
         }
 
-        public func list(completionHandler: @escaping (Array<String>) -> Void) {
+        public func list(completionHandler: @escaping (Array<String>) -> Void, errorHandler: @escaping(Error) -> Void) {
             guard let response = fetchCdn(endpoint: DragonService.EndpointConstants.Languages.rawValue) else {
                 return
             }
 
             response.responseJSON { response in
-                completionHandler(response.result.value as! Array<String>)
+                switch response.result {
+                case .success:
+                    if let languages = response.result.value as? Array<String> {
+                        completionHandler(languages)
+                    }
+                case .failure(let error):
+                    errorHandler(error)
+                }
             }
         }
 
-        public func get(version: String, locale: String, completionHandler: @escaping (LanguageModel) -> Void) {
+        public func get(version: String, locale: String, completionHandler: @escaping (LanguageModel) -> Void, errorHandler: @escaping(Error) -> Void) {
             guard let response = fetchCdn(version: version, locale: locale, endpoint: DragonService.EndpointConstants.Language.rawValue) else {
                 return
             }
 
             response.responseLanguage { response in
-                if let language = response.result.value {
-                    completionHandler(language)
+                switch response.result {
+                case .success:
+                    if let language = response.result.value {
+                        completionHandler(language)
+                    }
+                case .failure(let error):
+                    errorHandler(error)
                 }
+
             }
         }
     }
@@ -142,14 +174,23 @@ public class DragonService {
             super.init()
         }
 
-        public func list(version: String, locale: String, completionHandler: @escaping (Masteries) -> Void) {
+        public func list(version: String, locale: String, completionHandler: @escaping (Masteries) -> Void, errorHandler: @escaping(Error) -> Void) {
+            if version.isVersion(greaterThanOrEqualTo: "7.0.0") {
+                errorHandler(VersionError())
+            }
+
             guard let response = fetchCdn(version: version, locale: locale, endpoint: DragonService.EndpointConstants.Masteries.rawValue) else {
                 return
             }
 
             response.responseMasteries { response in
-                if let masteries = response.result.value {
-                    completionHandler(masteries)
+                switch response.result {
+                case .success:
+                    if let masteries = response.result.value {
+                        completionHandler(masteries)
+                    }
+                case .failure(let error):
+                    errorHandler(error)
                 }
             }
         }
@@ -160,14 +201,19 @@ public class DragonService {
             super.init()
         }
 
-        public func list(version: String, locale: String, completionHandler: @escaping (ProfileIcons) -> Void) {
+        public func list(version: String, locale: String, completionHandler: @escaping (ProfileIcons) -> Void, errorHandler: @escaping(Error) -> Void) {
             guard let response = fetchCdn(version: version, locale: locale, endpoint: DragonService.EndpointConstants.ProfileIcons.rawValue) else {
                 return
             }
 
             response.responseProfileIcons { response in
-                if let profileIcons = response.result.value {
-                    completionHandler(profileIcons)
+                switch response.result {
+                case .success:
+                    if let profileIcons = response.result.value {
+                        completionHandler(profileIcons)
+                    }
+                case .failure(let error):
+                    errorHandler(error)
                 }
             }
         }
@@ -178,14 +224,19 @@ public class DragonService {
             super.init()
         }
 
-        public func list(region: RegionConstants, completionHandler: @escaping (Realms) -> Void) {
+        public func list(region: RegionConstants, completionHandler: @escaping (Realms) -> Void, errorHandler: @escaping(Error) -> Void) {
             guard let response = fetchRealms(endpoint: "\(region.rawValue.lowercased()).json") else {
                 return
             }
 
             response.responseRealms { response in
-                if let realms = response.result.value {
-                    completionHandler(realms)
+                switch response.result {
+                case .success:
+                    if let realms = response.result.value {
+                        completionHandler(realms)
+                    }
+                case .failure(let error):
+                    errorHandler(error)
                 }
             }
         }
@@ -196,14 +247,19 @@ public class DragonService {
             super.init()
         }
 
-        public func list(version: String, locale: String, completionHandler: @escaping (Runes) -> Void) {
+        public func list(version: String, locale: String, completionHandler: @escaping (Runes) -> Void, errorHandler: @escaping(Error) -> Void) {
             guard let response = fetchCdn(version: version, locale: locale, endpoint: DragonService.EndpointConstants.Runes.rawValue) else {
                 return
             }
 
             response.responseRunes { response in
-                if let runes = response.result.value {
-                    completionHandler(runes)
+                switch response.result {
+                case .success:
+                    if let runes = response.result.value {
+                        completionHandler(runes)
+                    }
+                case .failure(let error):
+                    errorHandler(error)
                 }
             }
         }
@@ -214,14 +270,19 @@ public class DragonService {
             super.init()
         }
 
-        public func list(version: String, locale: String, completionHandler: @escaping (SummonerSpells) -> Void) {
+        public func list(version: String, locale: String, completionHandler: @escaping (SummonerSpells) -> Void, errorHandler: @escaping(Error) -> Void) {
             guard let response = fetchCdn(version: version, locale: locale, endpoint: DragonService.EndpointConstants.SummonerSpells.rawValue) else {
                 return
             }
 
             response.responseSummonerSpells { response in
-                if let summonerSpells = response.result.value {
-                    completionHandler(summonerSpells)
+                switch response.result {
+                case .success:
+                    if let summonerSpells = response.result.value {
+                        completionHandler(summonerSpells)
+                    }
+                case .failure(let error):
+                    errorHandler(error)
                 }
             }
         }
@@ -251,7 +312,7 @@ extension DragonService {
         case Champion = "champion"
     }
 
-    public enum RegionConstants: String {
+    public enum RegionConstants: String, CaseIterable {
         case RU = "RU"
         case BR = "BR"
         case OCE = "OCE"

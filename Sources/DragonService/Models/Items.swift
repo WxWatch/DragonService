@@ -13,17 +13,18 @@ public struct ItemsModel: Codable {
     public let type, version: String
     public let basic: Basic
     public let data: [String: ItemsDatum]
-    public let groups: [GroupElement]
-    public let tree: [ItemsTree]
+    public let groups: [GroupElement]?
+    public let tree: [ItemsTree]?
 }
 
 public struct ItemsDatum: Codable {
-    public let name, description, colloq, plaintext: String
-    public let into: [String]
+    public let name, description: String
+    public let colloq, plaintext: String?
+    public let into: [String?]?
     public let image: Image
     public let gold: Gold
     public let tags: [String]
-    public let maps: [String: Bool]
+    public let maps: [String: Bool]?
     public let stats: [String: Double]
     public let from: [String]?
     public let effect: Effect?
@@ -37,7 +38,7 @@ public struct ItemsDatum: Codable {
 }
 
 public struct Effect: Codable {
-    public let effect1Amount: String
+    public let effect1Amount: String?
     public let effect2Amount, effect3Amount, effect4Amount, effect5Amount: String?
     public let effect6Amount, effect7Amount, effect8Amount: String?
 

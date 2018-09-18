@@ -9,7 +9,8 @@
 import Foundation
 
 public struct LanguageModel: Codable {
-    public let type, version: String
+    public let type: String
+    public let version: String?
     public let data: [String: String]
     public let tree: LanguageTree
 }

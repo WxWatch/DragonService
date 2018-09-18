@@ -20,7 +20,7 @@ public struct RunesDatum: Codable {
     public let rune: DatumRune
     public let stats: [String: Double]
     public let tags: [Tag]
-    public let colloq, plaintext: JSONNull?
+    public let colloq, plaintext: String?
 }
 
 public struct DatumRune: Codable {

@@ -20,7 +20,7 @@ public struct ChampionData: Codable {
     public let skins: [Skin]?
     public let lore, blurb: String?
     public let allytips, enemytips, tags: [String]?
-    public let partype: String
+    public let partype: String?
     public let info: Info
     public let stats: [String: Double]
     public let spells: [Spell]?
@@ -34,7 +34,7 @@ public struct Info: Codable {
 
 public struct Passive: Codable {
     public let name, description: String
-    public let image: Image
+    public let image: Image?
 }
 
 public struct Recommended: Codable {
@@ -66,14 +66,14 @@ public struct Item: Codable {
 
 public struct Skin: Codable {
     public let id: String
-    public let num: Int
+    public let num: Int?
     public let name: String
-    public let chromas: Bool
+    public let chromas: Bool?
 }
 
 public struct Spell: Codable {
     public let id, name, description, tooltip: String
-    public let leveltip: Leveltip
+    public let leveltip: Leveltip?
     public let maxrank: Int
     public let cooldown: [Double]
     public let cooldownBurn: String
@@ -83,11 +83,12 @@ public struct Spell: Codable {
     public let effect: [[Double]?]
     public let effectBurn: [String?]
     public let vars: [VarData]
-    public let costType, maxammo: String
-    public let range: [Int]
+    public let costType: String
+    public let maxammo: String?
+    public let range: Range
     public let rangeBurn: String
     public let image: Image
-    public let resource: String
+    public let resource: String?
 }
 
 public struct VarData: Codable {

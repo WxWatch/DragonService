@@ -19,13 +19,14 @@ public struct Basic: Codable {
     public let name: String
     public let rune: Rune
     public let gold: Gold
-    public let group, description, colloq, plaintext: String
+    public let description: String
+    public let group, colloq, plaintext: String?
     public let consumed: Bool
     public let stacks, depth: Int
     public let consumeOnFull: Bool
     public let from, into: [String]
     public let specialRecipe: Int
-    public let inStore, hideFromAll: Bool
+    public let inStore, hideFromAll: Bool?
     public let requiredChampion: String
     public let stats: [String: Int]
     public let tags: [String]
@@ -70,6 +71,34 @@ public enum Coeff: Codable {
         case .double(let x):
             try container.encode(x)
         case .doubleArray(let x):
+            try container.encode(x)
+        }
+    }
+}
+
+public enum Range: Codable {
+    case doubleArray([Double])
+    case string(String)
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let x = try? container.decode([Double].self) {
+            self = .doubleArray(x)
+            return
+        }
+        if let x = try? container.decode(String.self) {
+            self = .string(x)
+            return
+        }
+        throw DecodingError.typeMismatch(Range.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for Range"))
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .doubleArray(let x):
+            try container.encode(x)
+        case .string(let x):
             try container.encode(x)
         }
     }

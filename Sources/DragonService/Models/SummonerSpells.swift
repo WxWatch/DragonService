@@ -16,7 +16,7 @@ public struct SummonerSpells: Codable {
 public struct SummonerSpellsDatum: Codable {
     public let id, name, description, tooltip: String
     public let maxrank: Int
-    public let cooldown: [Int]
+    public let cooldown: [Double]
     public let cooldownBurn: String
     public let cost: [Int]
     public let costBurn: String
@@ -24,14 +24,14 @@ public struct SummonerSpellsDatum: Codable {
     public let effectBurn: [String?]
     public let vars: [Var]
     public let key: String
-    public let summonerLevel: Int
-    public let modes: [String]
+    public let summonerLevel: Int?
+    public let modes: [String]?
     public let costType: String
-    public let maxammo: String
-    public let range: [Int]
+    public let maxammo: String?
+    public let range: Range
     public let rangeBurn: String
     public let image: Image
-    public let resource: String
+    public let resource: String?
     public let leveltip: Leveltip?
 }
 
