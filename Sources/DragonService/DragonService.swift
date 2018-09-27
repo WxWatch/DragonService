@@ -64,7 +64,7 @@ public class DragonService {
             super.init()
         }
 
-        public func list(version: String, locale: String, completionHandler: @escaping (Any?) -> Void, errorHandler: @escaping(Error) -> Void) {
+        public func list(version: String, locale: String, completionHandler: @escaping (Champions) -> Void, errorHandler: @escaping(Error) -> Void) {
             list(version: version, locale: locale, full: false, completionHandler: completionHandler, errorHandler: errorHandler)
         }
 
