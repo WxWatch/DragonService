@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "DragonService"
-  s.version      = "2.0.0"
+  s.version      = "2.0.1"
   s.summary      = "A library to fetch data from Data Dragon."
   s.description  = <<-DESC
   A Swift library designed to fetch League of Legends static data from Riot Games DataDragon CDN.
