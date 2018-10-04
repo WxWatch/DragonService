@@ -65,4 +65,9 @@ extension DataRequest {
     func responseChampions(queue: DispatchQueue? = nil, completionHandler: @escaping (DataResponse<Champions>) -> Void) -> Self {
         return responseDecodable(queue: queue, completionHandler: completionHandler)
     }
+
+    @discardableResult
+    func responsePerks(queue: DispatchQueue? = nil, completionHandler: @escaping (DataResponse<Perks>) -> Void) -> Self {
+        return responseDecodable(queue: queue, completionHandler: completionHandler)
+    }
 }

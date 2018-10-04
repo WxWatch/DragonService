@@ -196,6 +196,29 @@ public class DragonService {
         }
     }
 
+    public class Perk: DragonService {
+        public override init() {
+            super.init()
+        }
+
+        public func list(version: String, locale: String, completionHandler: @escaping (Perks) -> Void, errorHandler: @escaping(Error) -> Void) {
+            guard let response = fetchCdn(version: version, locale: locale, endpoint: DragonService.EndpointConstants.Perks.rawValue) else {
+                return
+            }
+
+            response.responsePerks { response in
+                switch response.result {
+                case .success:
+                    if let perks = response.result.value {
+                        completionHandler(perks)
+                    }
+                case .failure(let error):
+                    errorHandler(error)
+                }
+            }
+        }
+    }
+
     public class ProfileIcon: DragonService {
         public override init() {
             super.init()
@@ -342,5 +365,6 @@ extension DragonService {
         case Masteries = "mastery.json"
         case Runes = "rune.json"
         case SummonerSpells = "summoner.json"
+        case Perks = "runesReforged.json"
     }
 }
