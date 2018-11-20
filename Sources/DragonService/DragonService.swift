@@ -169,6 +169,29 @@ public class DragonService {
         }
     }
 
+    public class Map: DragonService {
+        public override init() {
+            super.init()
+        }
+
+        public func list(version: String, locale: String, completionHandler: @escaping (MapsModel) -> Void, errorHandler: @escaping(Error) -> Void) {
+            guard let response = fetchCdn(version: version, locale: locale, endpoint: DragonService.EndpointConstants.Maps.rawValue) else {
+                return
+            }
+
+            response.responseMap { response in
+                switch response.result {
+                case .success:
+                    if let map = response.result.value {
+                        completionHandler(map)
+                    }
+                case .failure(let error):
+                    errorHandler(error)
+                }
+            }
+        }
+    }
+
     public class Mastery: DragonService {
         public override init() {
             super.init()
@@ -362,6 +385,7 @@ extension DragonService {
         case Champions = "champion.json"
         case ChampionsFull = "championFull.json"
         case Items = "item.json"
+        case Maps = "map.json"
         case Masteries = "mastery.json"
         case Runes = "rune.json"
         case SummonerSpells = "summoner.json"

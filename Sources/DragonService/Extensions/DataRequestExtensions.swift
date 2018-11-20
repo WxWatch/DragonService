@@ -70,4 +70,9 @@ extension DataRequest {
     func responsePerks(queue: DispatchQueue? = nil, completionHandler: @escaping (DataResponse<Perks>) -> Void) -> Self {
         return responseDecodable(queue: queue, completionHandler: completionHandler)
     }
+
+    @discardableResult
+    func responseMap(queue: DispatchQueue? = nil, completionHandler: @escaping (DataResponse<MapsModel>) -> Void) -> Self {
+        return responseDecodable(queue: queue, completionHandler: completionHandler)
+    }
 }

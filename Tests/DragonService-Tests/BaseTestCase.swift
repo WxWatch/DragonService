@@ -7,6 +7,11 @@ class BaseTestCase: XCTestCase {
     let region = "NA"
 
     let versions = [
+        "8.23.1",
+        "8.22.1",
+        "8.21.1",
+        "8.20.1",
+        "8.19.1",
         "8.18.2",
         "8.18.1",
         "8.17.1",
